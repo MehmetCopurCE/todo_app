@@ -1,5 +1,39 @@
-class ToDo {
-  final String title;
+import 'package:intl/intl.dart';
 
-  const ToDo({required this.title});
+final formatter = DateFormat
+    .yMd(); //Tarihi insanların okuyabileceği şekle dönüştürüyor. Bunun için intl package  added
+
+class ToDo {
+  int? id;
+  final String title;
+  final DateTime date;
+
+  ToDo({
+    this.id,
+    required this.title,
+    required this.date,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'date': formatter.format(date),
+      // DateTime verisini metin olarak kaydediyoruz
+    };
+  }
+
+  static ToDo fromMap(Map<String, dynamic> map) {
+    return ToDo(
+      id: map['id'],
+      title: map['title'],
+      date: formatter.parse(map['date']), // Metni tekrar DateTime olarak dönüştürüyoruz
+    );
+  }
+
+  String get formattedDate {
+    return formatter.format(date);
+  }
+
+
 }

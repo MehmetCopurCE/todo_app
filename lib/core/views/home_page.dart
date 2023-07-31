@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/components/custom_toast_message.dart';
 import 'package:todo_app/core/models/toDo.dart';
+import 'package:todo_app/core/storage/database_helper.dart';
+import 'package:todo_app/core/view_model/todo_list.dart';
 import 'package:todo_app/core/views/add_new_todo.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,13 +13,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<ToDo> toDos = [
-    ToDo(title: 'Todo 1'),
-    ToDo(title: 'Todo 1'),
-  ];
-  
+  DatabaseHelper db = DatabaseHelper.instance;
 
-  Future<void> _addItem() async {
+  ///Dummy datas
+  List<ToDo> toDos = [
+    // ToDo(title: 'Todo 1', date: DateTime.now()),
+    // ToDo(title: 'Todo 1', date: DateTime.now()),
+  ];
+
+  Future<void> _loadToDos() async {
+    List<ToDo> _todos = [];
+    _todos = await db.getToDos();
+
+    setState(() {
+      toDos = _todos;
+    });
+  }
+
+  @override
+  void initState() {
+    _loadToDos();
+    super.initState();
+  }
+
+  void _addItem() async {
     final newToDo = await Navigator.of(context).push<ToDo>(MaterialPageRoute(
       builder: (context) => const AddToDoPage(),
     ));
@@ -24,7 +44,7 @@ class _HomePageState extends State<HomePage> {
     if (newToDo == null) {
       return;
     }
-    
+
     setState(() {
       toDos.add(newToDo!);
     });
@@ -51,16 +71,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: toDos.length,
-        itemBuilder: (context, index) => Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              title: Text(toDos[index].title),
-            ),
-          ),
-        ),
+      body: RefreshIndicator(
+        onRefresh: _loadToDos,
+        child: ToDoList(toDos: toDos),
       ),
     );
   }
