@@ -29,7 +29,7 @@ class _AddToDoPageState extends ConsumerState<AddToDoPage> {
     }
     final id = uuid.v4();
 
-    ref.read(todoProvider.notifier).addTodo(ToDo(id: id, title: title, date: _selectedDate!));
+    ref.read(todoProvider.notifier).addTodo(ToDo(id: id, title: title, date: _selectedDate!, isDone: false));
 
     //
     // ///sql kaydetme

@@ -7,7 +7,6 @@ import 'package:todo_app/core/screens/add_new_todo.dart';
 import 'package:todo_app/core/storage/database_helper.dart';
 import 'package:todo_app/core/widgets/todo_list.dart';
 
-
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
@@ -40,7 +39,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   void _addItem() async {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddToDoPage(),));
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => AddToDoPage(),
+    ));
     // final newToDo = await Navigator.of(context).push<ToDo>(MaterialPageRoute(
     //   builder: (context) => const AddToDoPage(),
     // ));
@@ -76,7 +77,23 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
         ],
       ),
-      body: todos.isEmpty ? Center(child: Image.asset('assets/images/img_todo.jpg'),) : ToDoList(todos: todos,),
+      body: todos.isEmpty
+          ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+                child: Image.asset('assets/images/img_todo.jpg'),
+              ),
+          )
+          : Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/img_todo.jpg'))
+              ),
+              child: ToDoList(
+                todos: todos,
+              ),
+            ),
     );
   }
 }

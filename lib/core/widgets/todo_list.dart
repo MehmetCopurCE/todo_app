@@ -4,6 +4,7 @@ import 'package:todo_app/core/components/custom_toast_message.dart';
 import 'package:todo_app/core/models/toDo.dart';
 import 'package:todo_app/core/providers/todo_provider.dart';
 import 'package:todo_app/core/storage/database_helper.dart';
+import 'package:todo_app/core/widgets/todo_item.dart';
 
 class ToDoList extends ConsumerStatefulWidget {
   const ToDoList({
@@ -18,10 +19,6 @@ class ToDoList extends ConsumerStatefulWidget {
 }
 
 class _ToDoListState extends ConsumerState<ToDoList> {
-  void deleteToDo(ToDo todo) async {
-    ref.read(todoProvider.notifier).deleteTodo(todo);
-    ToastMessage('Todo deleted successfully');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +27,7 @@ class _ToDoListState extends ConsumerState<ToDoList> {
       itemBuilder: (context, index) => Card(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            title: Text(widget.todos[index].title),
-            trailing: IconButton(
-              onPressed: () => deleteToDo(widget.todos[index]),
-              icon: Icon(Icons.delete),
-            ),
-          ),
+          child: TodoItem(todo: widget.todos[index]),
         ),
       ),
     );

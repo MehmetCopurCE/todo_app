@@ -7,11 +7,13 @@ class ToDo {
   final String id;
   final String title;
   final DateTime date;
+  final bool isDone;
 
   ToDo({
     required this.id,
     required this.title,
     required this.date,
+    required this.isDone,
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class ToDo {
       'id': id,
       'title': title,
       'date': formatter.format(date),
+      'isDone' : isDone ? 'true' : 'false',
       // DateTime verisini metin olarak kaydediyoruz
     };
   }
@@ -28,6 +31,7 @@ class ToDo {
       id: map['id'],
       title: map['title'],
       date: formatter.parse(map['date']), // Metni tekrar DateTime olarak dönüştürüyoruz
+      isDone: map['isDone'] == 'true',
     );
   }
 

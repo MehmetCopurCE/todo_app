@@ -21,6 +21,7 @@ class DatabaseHelper {
   static const String columnId = 'id';
   static const String columnTitle = 'title';
   static const String columnDate = 'date';
+  static const String columnIsDone = 'isDone';
 
   Future<Database?> get database async {
     if (_database != null) {
@@ -47,7 +48,8 @@ class DatabaseHelper {
       CREATE TABLE $tableName (
         $columnId TEXT NOT NULL,
         $columnTitle TEXT NOT NULL,
-        $columnDate TEXT NOT NULL
+        $columnDate TEXT NOT NULL,
+        $columnIsDone TEXT NOT NULL
       )
     ''');
   }
