@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/core/components/custom_toast_message.dart';
-import 'package:todo_app/core/models/toDo.dart';
+import 'package:todo_app/core/models/todo.dart';
 import 'package:todo_app/core/providers/todo_provider.dart';
 import 'package:todo_app/core/storage/database_helper.dart';
 import 'package:uuid/uuid.dart';
 
 final formatter = DateFormat.yMd();
 Uuid uuid = const Uuid();
+
 class AddToDoPage extends ConsumerStatefulWidget {
   const AddToDoPage({super.key});
 
@@ -21,45 +22,53 @@ class _AddToDoPageState extends ConsumerState<AddToDoPage> {
   final _controller = TextEditingController();
 
   DateTime? _selectedDate;
+  TimeOfDay? _selectedTime;
 
   void saveItem() async {
     final title = _controller.text;
-    if (title.trim().isEmpty || _selectedDate == null) {
+    if (title.trim().isEmpty || _selectedDate == null || _selectedTime == null) {
       return;
     }
     final id = uuid.v4();
 
-    ref.read(todoProvider.notifier).addTodo(ToDo(id: id, title: title, date: _selectedDate!, isDone: false));
+    ref.read(todoProvider.notifier).addTodo(Todo(id: id, title: title, date: _selectedDate!,time: _selectedTime!, isDone: false));
 
-    //
-    // ///sql kaydetme
-    // await db.insertToDo(ToDo(id : id ,title: title, date: _selectedDate!));
-    // setState(() {});
-    //
-    // if (!context.mounted) {
-    //   return;
-    // }
-    // Navigator.of(context).pop(
-    //   ToDo(id : id, title: title, date: _selectedDate!),
-    //);
     Navigator.of(context).pop();
     ToastMessage('New Todo added');
   }
 
-  void presentDatePicker() async {
+  void selectPresentDate() {
     final now = DateTime.now();
-    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    _selectedDate = now;
+  }
+
+  Future<void> presentDatePicker() async {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year, now.month, now.day);
+    final lastDate = DateTime(now.year + 1);
     final pickedDate = await showDatePicker(
       context: context,
       initialDate: now,
       firstDate: firstDate,
-      lastDate: now,
+      lastDate: lastDate,
     );
-
     setState(() {
       _selectedDate = pickedDate;
     });
     ToastMessage('Date picked');
+  }
+
+  Future<void> selectTime() async{
+    final pickedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    setState(() {
+      _selectedTime = pickedTime;
+    });
+  }
+
+  @override
+  void initState() {
+    selectPresentDate();
+    super.initState();
   }
 
   @override
@@ -87,14 +96,27 @@ class _AddToDoPageState extends ConsumerState<AddToDoPage> {
             ),
             const SizedBox(height: 8),
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                IconButton(
-                    onPressed: presentDatePicker,
-                    icon: const Icon(Icons.calendar_month)),
-                Text(_selectedDate == null
-                    ? 'Seleck the time'
-                    : formatter.format(_selectedDate!)),
+                Row(children: [
+                  IconButton(
+                      onPressed: selectTime,
+                      icon: const Icon(Icons.access_time)),
+                  Text(_selectedTime == null
+                      ? 'Seleck the time'
+                      : _selectedTime!.format(context)),
+                ],),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                        onPressed: presentDatePicker,
+                        icon: const Icon(Icons.calendar_month)),
+                    Text(_selectedDate == null
+                        ? 'Select the time'
+                        : formatter.format(_selectedDate!)),
+                  ],
+                ),
               ],
             ),
             const SizedBox(height: 6),

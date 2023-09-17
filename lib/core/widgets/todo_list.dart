@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_app/core/components/custom_toast_message.dart';
-import 'package:todo_app/core/models/toDo.dart';
+import 'package:todo_app/core/models/todo.dart';
 import 'package:todo_app/core/providers/todo_provider.dart';
 import 'package:todo_app/core/storage/database_helper.dart';
 import 'package:todo_app/core/widgets/todo_item.dart';
@@ -12,7 +12,7 @@ class ToDoList extends ConsumerStatefulWidget {
     required this.todos,
   });
 
-  final List<ToDo> todos;
+  final List<Todo> todos;
 
   @override
   ConsumerState<ToDoList> createState() => _ToDoListState();

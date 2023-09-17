@@ -7,7 +7,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:todo_app/core/components/custom_toast_message.dart';
-import 'package:todo_app/core/models/toDo.dart';
+import 'package:todo_app/core/models/todo.dart';
 
 final formatter = DateFormat.yMd();
 
@@ -21,6 +21,7 @@ class DatabaseHelper {
   static const String columnId = 'id';
   static const String columnTitle = 'title';
   static const String columnDate = 'date';
+  static const String columnTime = 'time';
   static const String columnIsDone = 'isDone';
 
   Future<Database?> get database async {
@@ -49,12 +50,13 @@ class DatabaseHelper {
         $columnId TEXT NOT NULL,
         $columnTitle TEXT NOT NULL,
         $columnDate TEXT NOT NULL,
+        $columnTime TEXT NOT NULL,
         $columnIsDone TEXT NOT NULL
       )
     ''');
   }
 
-  Future<int> insertToDo(ToDo toDo) async {
+  Future<int> insertTodo(Todo toDo) async {
     final db = await database;
     int insertedId = -1; // Başlangıçta geçersiz bir ID değeri belirliyoruz.
 
@@ -74,7 +76,7 @@ class DatabaseHelper {
   }
 
 
-  Future<int> updateToDo(ToDo toDo) async {
+  Future<int> updateTodo(Todo toDo) async {
     final db = await database;
     try {
       return await db!.update(
@@ -90,7 +92,7 @@ class DatabaseHelper {
     }
   }
 
-  Future<int> deleteToDo(ToDo todo) async {
+  Future<int> deleteTodo(Todo todo) async {
     final db = await database;
     try {
       return await db!.delete(
@@ -104,11 +106,11 @@ class DatabaseHelper {
     }
   }
 
-  Future<List<ToDo>> getToDos() async {
+  Future<List<Todo>> getTodos() async {
     final db = await database;
     try {
       var toDosMapList = await db!.query(tableName, orderBy: '$columnDate ASC');
-      return toDosMapList.map((toDoMap) => ToDo.fromMap(toDoMap)).toList();
+      return toDosMapList.map((toDoMap) => Todo.fromMap(toDoMap)).toList();
     } catch (e) {
       debugPrint('Get todos failed: ${e.toString()}');
       return []; // Başarısızlık durumunda boş bir liste döndürebiliriz.
@@ -116,10 +118,4 @@ class DatabaseHelper {
   }
 
 
-
-// Future<List<ToDo>> getToDos() async {
-//   //   final db = await database;
-//   //   var toDosMapList = await db!.query('toDos');
-//   //   return toDosMapList.map((toDoMap) => ToDo.fromMap(toDoMap)).toList();
-//   // }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_app/core/components/custom_toast_message.dart';
-import 'package:todo_app/core/models/toDo.dart';
+import 'package:todo_app/core/models/todo.dart';
 import 'package:todo_app/core/providers/todo_provider.dart';
 import 'package:todo_app/core/screens/add_new_todo.dart';
 import 'package:todo_app/core/storage/database_helper.dart';
@@ -57,7 +57,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<ToDo> todos = ref.watch(todoProvider);
+    List<Todo> todos = ref.watch(todoProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
