@@ -4,12 +4,12 @@ final formatter = DateFormat
     .yMd(); //Tarihi insanların okuyabileceği şekle dönüştürüyor. Bunun için intl package  added
 
 class ToDo {
-  int? id;
+  final String id;
   final String title;
   final DateTime date;
 
   ToDo({
-    this.id,
+    required this.id,
     required this.title,
     required this.date,
   });

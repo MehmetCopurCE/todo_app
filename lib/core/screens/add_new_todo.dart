@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/core/components/custom_toast_message.dart';
 import 'package:todo_app/core/models/toDo.dart';
+import 'package:todo_app/core/providers/todo_provider.dart';
 import 'package:todo_app/core/storage/database_helper.dart';
+import 'package:uuid/uuid.dart';
 
 final formatter = DateFormat.yMd();
-
-class AddToDoPage extends StatefulWidget {
+Uuid uuid = const Uuid();
+class AddToDoPage extends ConsumerStatefulWidget {
   const AddToDoPage({super.key});
 
   @override
-  State<AddToDoPage> createState() => _AddToDoPageState();
+  ConsumerState<AddToDoPage> createState() => _AddToDoPageState();
 }
 
-class _AddToDoPageState extends State<AddToDoPage> {
+class _AddToDoPageState extends ConsumerState<AddToDoPage> {
   DatabaseHelper db = DatabaseHelper.instance;
   final _controller = TextEditingController();
 
@@ -24,17 +27,22 @@ class _AddToDoPageState extends State<AddToDoPage> {
     if (title.trim().isEmpty || _selectedDate == null) {
       return;
     }
+    final id = uuid.v4();
 
-    ///sql kaydetme
-    await db.insertToDo(ToDo(title: title, date: _selectedDate!));
-    setState(() {});
+    ref.read(todoProvider.notifier).addTodo(ToDo(id: id, title: title, date: _selectedDate!));
 
-    if (!context.mounted) {
-      return;
-    }
-    Navigator.of(context).pop(
-      ToDo(title: title, date: _selectedDate!),
-    );
+    //
+    // ///sql kaydetme
+    // await db.insertToDo(ToDo(id : id ,title: title, date: _selectedDate!));
+    // setState(() {});
+    //
+    // if (!context.mounted) {
+    //   return;
+    // }
+    // Navigator.of(context).pop(
+    //   ToDo(id : id, title: title, date: _selectedDate!),
+    //);
+    Navigator.of(context).pop();
     ToastMessage('New Todo added');
   }
 

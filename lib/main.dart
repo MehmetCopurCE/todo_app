@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/views/home_page.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_app/core/screens/home_page.dart';
+import 'package:todo_app/core/screens/onboarding.dart';
+import 'package:todo_app/core/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,12 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+      theme: LightTheme,
+      home: const OnboardingPage(),
     );
   }
 }
-
