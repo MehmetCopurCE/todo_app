@@ -109,7 +109,7 @@ class DatabaseHelper {
   Future<List<Todo>> getTodos() async {
     final db = await database;
     try {
-      var toDosMapList = await db!.query(tableName, orderBy: '$columnDate ASC');
+      var toDosMapList = await db!.query(tableName, orderBy: '$columnDate ASC, $columnTime ASC');
       return toDosMapList.map((toDoMap) => Todo.fromMap(toDoMap)).toList();
     } catch (e) {
       debugPrint('Get todos failed: ${e.toString()}');

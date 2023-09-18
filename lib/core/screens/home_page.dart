@@ -79,17 +79,17 @@ class _HomePageState extends ConsumerState<HomePage> {
       ),
       body: todos.isEmpty
           ? Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
                 child: Image.asset('assets/images/img_todo.jpg'),
               ),
-          )
+            )
           : Container(
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage('assets/images/img_todo.jpg'))
-              ),
+                  image: DecorationImage(
+                      image: AssetImage('assets/images/img_todo.jpg'))),
               child: ToDoList(
                 todos: todos,
               ),

@@ -24,12 +24,7 @@ class _ToDoListState extends ConsumerState<ToDoList> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: widget.todos.length,
-      itemBuilder: (context, index) => Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TodoItem(todo: widget.todos[index]),
-        ),
-      ),
+      itemBuilder: (context, index) => TodoItem(todo: widget.todos[index]),
     );
   }
 }
