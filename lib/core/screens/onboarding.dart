@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_app/core/models/todo.dart';
 import 'package:todo_app/core/providers/todo_provider.dart';
 import 'package:todo_app/core/screens/add_new_todo.dart';
-import 'package:todo_app/core/screens/home_page.dart';
+import 'package:todo_app/core/screens/homepage.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todo_app/core/screens/home_page.dart';
 import 'package:todo_app/core/screens/onboarding.dart';
 import 'package:todo_app/core/theme.dart';
 
