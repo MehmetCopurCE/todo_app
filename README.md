@@ -1,19 +1,9 @@
 # ToDo
 
-This project includes a sample mobile todo application developed with Flutter.
+Bu proje, Flutter ile geliştirilmiş örnek bir mobil yapılacaklar listesi uygulamasını içerir.
 
-![Uygulama Ekran Görüntüsü](https://github.com/MehmetCopurCE/todo_app/blob/master/assets/app_images/Screenshot_20230924_153145.png | width=300)
+| Resim 1 | Resim 2 | Resim 3 | Resim 4 | Resim 5 |
+|-----------|-----------|-----------|-----------|-----------|
+| <img src="assets/app_images/Screenshot_20230924_153145.png" width="400"> | <img src="assets/app_images/Screenshot_20230924_153208.png" width="400"> | <img src="assets/app_images/Screenshot_20230924_153223.png" width="400"> | <img src="assets/app_images/Screenshot_20230924_153311.png" width="400"> | <img src="assets/app_images/Screenshot_20230924_153321.png" width="400"> |
 
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
