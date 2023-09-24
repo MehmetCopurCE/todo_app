@@ -15,11 +15,14 @@ class OnboardingPage extends StatefulWidget {
 class _OnboardingPageState extends State<OnboardingPage> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 2), (){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(),));
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ));
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

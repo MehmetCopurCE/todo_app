@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -44,7 +45,7 @@ class _AddToDoPageState extends ConsumerState<AddToDoPage> {
 
   Future<void> presentDatePicker() async {
     final now = DateTime.now();
-    final firstDate = DateTime(now.year, now.month, now.day);
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
     final lastDate = DateTime(now.year + 1);
     final pickedDate = await showDatePicker(
       context: context,

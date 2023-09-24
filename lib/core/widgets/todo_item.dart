@@ -65,7 +65,7 @@ class _TodoItemState extends ConsumerState<TodoItem> {
                       : null
               ),
               Text(widget.todo.time.format(context)),
-              Text(formatter.format(widget.todo.date)),
+              //Text(formatter.format(widget.todo.date)),
             ],
           ),
           // trailing: IconButton(
