@@ -1,6 +1,9 @@
-# todo_app
+# ToDo
 
-A new Flutter project.
+This project includes a sample mobile todo application developed with Flutter.
+
+![Uygulama Ekran Görüntüsü](https://github.com/MehmetCopurCE/todo_app/blob/master/assets/app_images/Screenshot_20230924_153145.png | width=300)
+
 
 ## Getting Started
 
