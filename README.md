@@ -73,6 +73,6 @@ flutter run
 
 You can share your opinions and suggestions about the application with me from the links below.
 
-
+[<img src="assets/images/LinkedIn_logo.png" width="50">](https://www.linkedin.com/in/m-copur/)
 
 
