@@ -1,4 +1,4 @@
-# ToDo 
+# ToDo
 <img src="assets/images/img_giri%C5%9F.png" width="200">
 
 This project includes a sample mobile todo application developed with Flutter.
@@ -31,7 +31,7 @@ This app allows users to record what to do and check if they have done it. In ad
 
 ### Used Packages
 - [Flutter Riverpod](https://pub.dev/packages/flutter_riverpod) <br>
-<img src="https://github.com/rrousselGit/riverpod/blob/master/resources/icon/Facebook%20Cover%20A.png?raw=true" width="250"> <br>
+  <img src="https://github.com/rrousselGit/riverpod/blob/master/resources/icon/Facebook%20Cover%20A.png?raw=true" width="250"> <br>
 - [Table Calendar](https://pub.dev/packages/table_calendar) <br>
 - [Sqflite](https://pub.dev/packages/sqflite) <br>
 - [Toast Message](https://pub.dev/packages/fluttertoast) <br>
@@ -74,5 +74,4 @@ flutter run
 You can share your opinions and suggestions about the application with me from the links below.
 
 [<img src="assets/images/LinkedIn_logo.png" width="50">](https://www.linkedin.com/in/m-copur/)
-
 
