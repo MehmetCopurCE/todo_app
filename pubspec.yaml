@@ -69,6 +69,8 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/img_giriş.png
+    - assets/images/img_todo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

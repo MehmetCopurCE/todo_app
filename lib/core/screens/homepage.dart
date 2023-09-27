@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/core/models/todo.dart';
 import 'package:todo_app/core/providers/todo_provider.dart';
-import 'package:todo_app/core/screens/add_new_todo.dart';
+import 'package:todo_app/core/screens/add_todo_page.dart';
 import 'package:todo_app/core/screens/table_calendar.dart';
 import 'package:todo_app/core/widgets/today_todos.dart';
 import 'package:todo_app/core/widgets/tomorrow_todos.dart';
