@@ -16,6 +16,12 @@ class _PlatformSpecificTimePickerState
     extends State<PlatformSpecificTimePicker> {
   TimeOfDay? _selectedTime;
 
+  void selectPresentDate() {
+    final now = DateTime.now();
+    final currentTime = TimeOfDay(hour: now.hour, minute: now.minute);
+    _selectedTime = currentTime;
+  }
+
   Future<void> _showTimePicker(BuildContext context) async {
     TimeOfDay? selectedTime;
 
@@ -38,9 +44,8 @@ class _PlatformSpecificTimePickerState
                   mode: CupertinoDatePickerMode.time,
                   initialDateTime: DateTime.now(),
                   onDateTimeChanged: (DateTime newDateTime) {
-                    selectedTime = TimeOfDay.fromDateTime(newDateTime);
                     setState(() {
-                      _selectedTime = selectedTime;
+                      selectedTime = TimeOfDay.fromDateTime(newDateTime);
                     });
                   },
                 ),
@@ -62,7 +67,12 @@ class _PlatformSpecificTimePickerState
         _selectedTime = selectedTime;
       });
     }
+  }
 
+  @override
+  void initState() {
+    selectPresentDate();
+    super.initState();
   }
 
   @override
@@ -73,26 +83,32 @@ class _PlatformSpecificTimePickerState
             children: [
               Icon(Icons.access_time),
               const SizedBox(width: 5),
-              Text(_selectedTime == null
-                  ? 'Select time'
-                  : _selectedTime!.format(context), style: TextStyle(fontSize: 16)),
+              Text(
+                  _selectedTime == null
+                      ? 'Select time'
+                      : _selectedTime!.format(context),
+                  style: TextStyle(fontSize: 16)),
             ],
           ),
           onPressed: () {
-            _showTimePicker(context);
+            setState(() {
+              _showTimePicker(context);
+            });
           });
     }
     return InkWell(
-      onTap:() {
+      onTap: () {
         _showTimePicker(context);
       },
       child: Row(
         children: [
           Icon(Icons.access_time),
           const SizedBox(width: 8),
-          Text(_selectedTime == null
-              ? 'Select time'
-              : _selectedTime!.format(context), style: TextStyle(fontSize: 16)),
+          Text(
+              _selectedTime == null
+                  ? 'Select time'
+                  : _selectedTime!.format(context),
+              style: TextStyle(fontSize: 16)),
         ],
       ),
     );

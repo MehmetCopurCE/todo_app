@@ -27,8 +27,8 @@ class _AddWidgetsState extends ConsumerState<NewTodo> {
   DatabaseHelper db = DatabaseHelper.instance;
   final _controller = TextEditingController();
 
-  DateTime? _selectedDate;
-  TimeOfDay? _selectedTime;
+   DateTime? _selectedDate;
+   TimeOfDay? _selectedTime;
 
   void saveItem() async {
     final title = _controller.text;
@@ -50,10 +50,12 @@ class _AddWidgetsState extends ConsumerState<NewTodo> {
     ToastMessage('New Todo added');
   }
 
-  void selectPresentDate() {
-    final now = DateTime.now();
-    _selectedDate = now;
-  }
+  // void selectPresentDate() {
+  //   final now = DateTime.now();
+  //   final currentTime = TimeOfDay(hour: now.hour + 2, minute: now.minute);
+  //   _selectedTime = currentTime;
+  //   _selectedDate = now;
+  // }
 
   void onDateSelected(DateTime selectedDate) {
     setState(() {
@@ -67,10 +69,9 @@ class _AddWidgetsState extends ConsumerState<NewTodo> {
     });
   }
 
-
   @override
   void initState() {
-    selectPresentDate();
+    //selectPresentDate();
     super.initState();
   }
 

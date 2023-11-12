@@ -15,7 +15,8 @@ class PlatformSpecificDatePicker extends StatefulWidget {
       _PlatformSpecificDatePickerState();
 }
 
-class _PlatformSpecificDatePickerState extends State<PlatformSpecificDatePicker> {
+class _PlatformSpecificDatePickerState
+    extends State<PlatformSpecificDatePicker> {
   DateTime? _selectedDate;
 
   Future<void> presentDatePicker(BuildContext context) async {
@@ -55,17 +56,26 @@ class _PlatformSpecificDatePickerState extends State<PlatformSpecificDatePicker>
         lastDate: lastDate,
       );
 
-      setState(() {
-        _selectedDate = pickedDate;
-      });
-
       if (pickedDate != null) {
+        setState(() {
+          widget.onDateSelected(pickedDate);
+          _selectedDate = pickedDate;
+        });
         ToastMessage('Date picked');
       }
     }
   }
 
+  @override
+  void initState() {
+    selectPresentDate();
+    super.initState();
+  }
 
+  void selectPresentDate() {
+    final now = DateTime.now();
+    _selectedDate = now;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,26 +85,33 @@ class _PlatformSpecificDatePickerState extends State<PlatformSpecificDatePicker>
             children: [
               Icon(Icons.calendar_month),
               const SizedBox(width: 5),
-              Text(_selectedDate == null
-                  ? 'Select date'
-                  : formatter.format(_selectedDate!), style: TextStyle(fontSize: 16)),
+              Text(
+                  _selectedDate == null
+                      ? 'Select date'
+                      : formatter.format(_selectedDate!),
+                  style: TextStyle(fontSize: 16)),
             ],
           ),
           onPressed: () {
-            presentDatePicker(context);
-      });
+            setState(() {
+              presentDatePicker(context);
+            });
+          });
     }
     return InkWell(
-      onTap:() {
+      onTap: () {
         presentDatePicker(context);
       },
       child: Row(
         children: [
           Icon(Icons.calendar_month),
           const SizedBox(width: 8),
-          Text(_selectedDate == null
-              ? 'Select date'
-              : formatter.format(_selectedDate!), style: TextStyle(fontSize: 16),),
+          Text(
+            _selectedDate == null
+                ? 'Select date'
+                : formatter.format(_selectedDate!),
+            style: TextStyle(fontSize: 16),
+          ),
         ],
       ),
     );
