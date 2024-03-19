@@ -26,7 +26,7 @@ This app allows users to record what to do and check if they have done it. In ad
 
 | Calendar | New ToDo |
 |-----------|-----------|
-| <img src="assets/app_images/Screenshot_20230924_153311.png" width="200"> | <img src="assets/app_images/Screenshot_20230924_153321.png" width="200"> | 
+| <img src="assets/app_images/Screenshot_20231210_011725.png" width="200"> | <img src="assets/app_images/Screenshot_20230924_153321.png" width="200"> | 
 
 
 ### Used Packages
